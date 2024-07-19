@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useContext, useEffect } from 'react';
 import './App.css';
+import Blog from './component/Blog';
+import Header from './component/Header';
+import Pagination from './component/Pagination';
+import { AppContext } from './contextAPI/AppContext';
 
 function App() {
+
+  const {fetchBlogPosts} = useContext(AppContext);//ek se jyada context bana sakte hai isliye 
+  //hmoko use Context ke andar konsa context use krna define krna hoga
+
+  useEffect(()=>{
+    fetchBlogPosts();
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+        <Header/>
+        <Blog/>
+        <Pagination/>
     </div>
   );
 }
